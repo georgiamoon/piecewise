@@ -117,12 +117,12 @@ aggregation_stats_table_name: "block_statistics"
 # Define the latitude and longitude for the southwest and northeast corners of a bounding 
 # box, defining the region where you are interested in pulling M-Lab NDT data.
 map_coordinate_southwest: 
-  lat: 47.3630134401
-  lon: -122.6733398438
+  lat: 38.789148
+  lon: -77.134666
 
 map_coordinate_northeast: 
-  lat: 47.8076208172
-  lon: -121.9509887695
+  lat: 39.005045
+  lon: -76.89846
 
 # The four variable below are derived from your bounding box coordinates above.
 map_bounding_box: "{{ map_coordinate_southwest.lon }},{{ map_coordinate_southwest.lat }},{{ map_coordinate_northeast.lon }},{{ map_coordinate_northeast.lat }}"
@@ -146,11 +146,11 @@ map_data_end_date: "Mar 13 2017 00:00:00"
 # be created from the shapefile you defined above. 
 # Save your topojson file into the folder /local_customizations/geofiles
 # and then enter its filename here.
-topojson_file: seattle_census10_blockgroups.topojson
+topojson_file: dc_ancs.topojson
 
 # 'geoKey' is the field name in your topojson file which corresponds to the unique key 
 # in your shapefile, and is typically the same as dbKey, but in CAPITAL LETTERS.
-geoKey: GEOID10
+geoKey: ANC_ID
 
 # 'mapscript_start_year' is the first year you are interested in showing in the year dropdown
 # 'mapscript_start_month' lets you define the order of months in the UI.
@@ -183,8 +183,8 @@ mapscript_zoom_level: 11
 # a layer name in the JavaScript code, and 'mapscript_layer_name_pretty' is used in the 
 # UI if the layer controls are displayed for the user. By default, Piecewise will deploy
 # with one layer, and will not show the layer controls.
-mapscript_layer_name: "census_block_groups"
-mapscript_layer_name_pretty: "Census block groups"
+mapscript_layer_name: "anc"
+mapscript_layer_name_pretty: "Advisory Neighborhood Commissions"
 
 # In the future, support for other types of geo data, such as the geojson format may be
 # included in Piecewise. Currently, the mapscript json type should always be 'topojson'. 
@@ -226,9 +226,9 @@ form_fields:
         2:
           comcast: "Comcast"
         3:
-          centurylink: "CenturyLink"
+          centurylink: "Verizon"
         4:
-          wave: "Wave"
+          wave: "RCN"
         5:
           other: "Other"
       required: yes
@@ -253,9 +253,9 @@ form_fields:
         2:
           wired: "Wired connection"
         3:
-          wireless_single: "Wireless connection - 1 device"
+          wireless_single: "Wireless connection"
         4:
-          wireless_multiple: "Wireless connection - shared among multiple devices or households"
+          wireless_multiple: "Mobile Connection"
       required: yes
   4:
     cost_of_service:
@@ -278,6 +278,8 @@ form_fields:
         6:
           above_100: "$100 +"
         7:
+          pay_as_go: "Pay as you go plan"
+        8:
           dont_know: "Don't know"
       required: yes
   5:
@@ -305,20 +307,18 @@ form_fields:
 # The section below allows you to customize various text and other elements of the website
 
 # 'site_name' is used as the HTML page title element
-site_name: "Seattle Broadband Map"
+site_name: "DC Broadband Map"
 
 # 'intro_text' defines the heading text that precedes the HTML survey form, provided to users
 # before they may take the test.
 intro_text: >
-  The City of Seattle is collecting information from residents about broadband 
-  experiences across the City. To contribute, please answer the following 
+  Washington, DC residents have been talking a lot about broadband internet service. Let's collect data to assess what's happening in DC. To contribute, please answer the following 
   questions and then take our Broadband Speed Test:
 
 # 'consent_message' defines the message displayed next to the consent checkbox
 consent_message: >
   I understand that the data collected from this test will be anonymized and aggregated 
-  for publication to the Broadband Map and 
-  <a href="https://data.seattle.gov" target="_blank">Data.Seattle.Gov</a>.
+  for publication to the Broadband Map.
 
 # The variables below define the messages and labels provided to the user before and 
 # after the test.
@@ -336,9 +336,9 @@ thank_you_message: >
 
 # 'next_action_' variables define the action items present to the user after they run the test.
 next_action_message: "What do you want to do next?"
-next_action_show_map_text: "View all results to-date on a map of Seattle"
+next_action_show_map_text: "View all results to-date on a map of DC"
 next_action_learn_about_text: "Learn more about this test and how to improve your speed"
-next_action_learn_about_link: "https://www.seattle.gov/broadband-speed-test-about"
+next_action_learn_about_link: "/"
 next_action_social_share_text: "Share this test with your friends, colleagues, and neighbors"
 
 # 'social_share_' variables define the links to be used for social sharing actions.
@@ -346,13 +346,13 @@ next_action_social_share_text: "Share this test with your friends, colleagues, a
 # If you set any of these to 'none', they will be excluded from the website.
 # If you don't want any social share options, set all of the items below to 'none'
 # and also set 'next_action_social_share_text' to 'none' (without quotes) above.
-social_share_twitter: "http://twitter.com/share?url=http://www.seattle.gov/broadband-speed-test&text=I%20tested%20my%20Internet%20speeds%20with%20the%20Seattle%20Broadband%20Speed%20Test&via=CivicTechSea"
-social_share_gplus: "https://plus.google.com/share?url=http://www.seattle.gov/broadband-speed-test"
-social_share_facebook: "http://www.facebook.com/sharer/sharer.php?u=http://www.seattle.gov/broadband-speed-test"
-social_share_stumbleupon: "http://www.stumbleupon.com/submit?url=http://www.seattle.gov/broadband-speed-test&title=I%20tested%20my%20Internet%20speeds%20with%20the%20Seattle%20Broadband%20Speed%20Test"
-social_share_reddit: "http://reddit.com/submit?url=http://www.seattle.gov/broadband-speed-test&title=I%20tested%20my%20Internet%20speeds%20with%20the%20Seattle%20Broadband%20Speed%20Test"
-social_share_linkedin: "http://www.linkedin.com/shareArticle?url=http://www.seattle.gov/broadband-speed-test&title=I%20tested%20my%20Internet%20speeds%20with%20the%20Seattle%20Broadband%20Speed%20Test&summary=I%20tested%20my%20Internet%20speeds%20with%20the%20Seattle%20Broadband%20Speed%20Test&source=http://www.seattle.gov/broadband-speed-test"
-social_share_email: "mailto:?subject=Take%20the%20Seattle%20Broadband%20Speed Test&body=I%20just%20took%20the%20Seattle%20Broadband%20Speed%20Test,%20and%20you%20should%20too!%20Take%20the%20test%20and%20contribute%20to%20a%20map%20of%20broadband%20speeds%20across%20the%20city. http://www.seattle.gov/broadband-speed-test"
+social_share_twitter: "http://twitter.com/share?text=I%20tested%20my%20Internet%20speeds%20with%20the%20DC%20Broadband%20Speed%20Test"
+social_share_gplus: "https://plus.google.com/share?text=I%20tested%20my%20Internet%20speeds%20with%20the%20DC%20Broadband%20Speed%20Test"
+social_share_facebook: "http://www.facebook.com/sharer/sharer.php?text=I%20tested%20my%20Internet%20speeds%20with%20the%20DC%20Broadband%20Speed%20Test"
+social_share_stumbleupon: "http://www.stumbleupon.com/submit?title=I%20tested%20my%20Internet%20speeds%20with%20the%20DC%20Broadband%20Speed%20Test"
+social_share_reddit: "http://reddit.com/submit?title=I%20tested%20my%20Internet%20speeds%20with%20the%20DC%20Broadband%20Speed%20Test"
+social_share_linkedin: "http://www.linkedin.com/shareArticle?title=I%20tested%20my%20Internet%20speeds%20with%20the%20DC%20Broadband%20Speed%20Test&summary=I%20tested%20my%20Internet%20speeds%20with%20the%20DC%20Broadband%20Speed%20Test"
+social_share_email: "mailto:?subject=Take%20the%20DC%20Broadband%20Speed Test&body=I%20just%20took%20the%20DC%20Broadband%20Speed%20Test,%20and%20you%20should%20too!%20Take%20the%20test%20and%20contribute%20to%20a%20map%20of%20broadband%20speeds%20across%20the%20city. URL"
 
 # 'icon_' and 'mapview_icon_' variables define the text accompanying the icons in the user interface
 #
@@ -363,12 +363,12 @@ icon_browse_label: "Browse the Broadband Map"
 icon_browse_alt_text: "Browse the Broadband Map"
 icon_learn_label: "Learn More"
 icon_learn_alt_text: "Learn more about this test."
-icon_learn_link: "http://www.seattle.gov/broadband/broadband-speed-test/about-the-broadband-speed-test"
+icon_learn_link: "/"
 
 # 'mapview_icon_' variables set the text values and '?' link on the mapview display
 mapview_icon_test_alt_text: "Take the Speed Test"
 mapview_icon_learn_alt_text: "Learn more about this test."
-mapview_icon_learn_link: "http://www.seattle.gov/broadband/broadband-speed-test/about-the-broadband-speed-test"
+mapview_icon_learn_link: "/"
 
 # The two varables below control where Leaflet map controls are placed in the UI. 
 # They should remain unchanged for now. More work on positioning for Leaflet elements will follow.
